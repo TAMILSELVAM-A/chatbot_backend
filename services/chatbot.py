@@ -7,10 +7,17 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.retrieval import create_retrieval_chain
 import pandas as pd
 from services.booking import is_valid_date, book_hotel, check_booking_status
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(BASE_DIR, '../data/Leela_palace.csv')
+
+df = pd.read_csv(CSV_PATH)
+
 
 # Load data
 try:
-    file_path = "../data/Leela_palace.csv"
+    file_path = CSV_PATH
     df, documents = load_csv_file(file_path)
     text_chunks = split_text(documents)
 except Exception as e:

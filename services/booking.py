@@ -1,8 +1,12 @@
 from datetime import datetime
 import pandas as pd
 import uuid
+import os
 
-file_path = "D:/Leela-Palace/backend/data/Leela_palace.csv"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(BASE_DIR, '../data/Leela_palace.csv')
+
+file_path = CSV_PATH
 
 def is_valid_date(date_text):
     try:
