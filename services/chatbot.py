@@ -63,9 +63,9 @@ def process_query(user_id: str, query: str) -> str:
     try:
         query = query.lower().strip()
 
-        if query in ["bye", "quit", "exit"]:
+        if query in ["bye", "quit", "exit","thank you"]:
             if user_id in user_session:
-                del user_session[user_id]  # Clear session if ongoing
+                del user_session[user_id]
             return "Thank you for chatting with The Leela Palace. Have a great day! 😊"
         
         elif "check booking" in query or "booking status" in query:
@@ -74,7 +74,7 @@ def process_query(user_id: str, query: str) -> str:
         
         elif "book" in query:
             try:
-                df = pd.read_csv(file_path)  # Read hotel locations
+                df = pd.read_csv(file_path)
                 available_locations = df["Location"].unique()
                 location_options = "\n".join([f"- {loc}" for loc in available_locations])
             except Exception as e:
