@@ -1,5 +1,5 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -25,6 +25,14 @@ def home():
         "Access-Control-Allow-Headers": "Content-Type, Authorization"
     }
     return JSONResponse(content={"message": "Chatbot API is running!"}, headers=headers)
+
+@app.options("/{full_path:path}")
+async def preflight(full_path: str, request: Request):
+    return JSONResponse(content={}, headers={
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+    })
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
