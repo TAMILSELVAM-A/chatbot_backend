@@ -1,11 +1,17 @@
 fastapi
 uvicorn
-pandas
-langchain
-langchain_groq
-faiss-cpu
-sentence-transformers
+python-multipart
 python-dotenv
-langchain-community
-tiktoken
-openai
+
+# Audio Processing
+librosa
+soundfile
+pyannote.audio
+onnxruntime
+
+# OpenAI Integration
+openai==0.28
+
+
+# Additional Dependencies
+typing
